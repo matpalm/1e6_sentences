@@ -18,6 +18,8 @@ In the place of reliability, IRT offers the test information function which show
 
 ## corenlp tagging
 
+runs the data through corenlp and emits token, its lemma and pos tag.
+
 ```
 $ cd parse
 $ mvn clean compile assembly:single
@@ -34,12 +36,12 @@ Monmouth Monmouth NNP	's 's POS   status status NN	as as IN  the the DT	  last l
 
 ## conversion to embeddable vocab
 
-for embeddings we want simple symbolic tokens...
+for embeddings we want simple symbolic tokens.
 
-sentences_to_embeddables converts this to a series of space seperated embeddable items (ie one embedding per distinct token in this set)
+sentences_to_embeddables converts the output from corenlp into a series of space seperated embeddable symbols (ie one embedding per distinct token in this set)
 
 ```
-$ head -n5 sentences.tagged.tsv | ./sentences_to_embeddables.py --emit=lemma --strip-CD --add-pos-tag --keep-top=50 >sentences.lemma.CD.pos.50K.ssv 2>/dev/null
+$ time cat sentences.tagged.tsv | ./sentences_to_embeddables.py --emit=lemma --strip-CD --add-pos-tag --keep-top=50000 >sentences.lemma.CD.pos.50K.ssv
 $ head sentences.lemma.CD.pos.50K.ssv
 the_DT by-census_NN indicate_VBD UNK the_DT UNK DDD_CD population_NN be_VBD UNK to_TO DDD_CD ,_, a_DT reduction_NN UNK a_DT previous_JJ UNK UNK more_JJR UNK DDD_CD DDD_CD ._.
 `_`` on_IN the_DT marble_NNP cliffs_NNPS '_POS -lrb-_-LRB- DDD_CD ,_, UNK UNK :_: `_`` UNK UNK marmorklippen_NN '_'' -rrb-_-RRB- use_VBZ UNK to_TO UNK jünger_NNP 's_POS negative_JJ perception_NNS UNK the_DT UNK in_IN UNK 's_POS germany_NNP ._.
