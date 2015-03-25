@@ -18,7 +18,7 @@ In the place of reliability, IRT offers the test information function which show
 
 ## corenlp tagging
 
-runs the data through corenlp and emits token, its lemma and pos tag.
+`parse` runs the data through corenlp and emits each token, it's lemma and pos tag.
 
 ```
 $ cd parse
@@ -36,9 +36,8 @@ Monmouth Monmouth NNP	's 's POS   status status NN	as as IN  the the DT	  last l
 
 ## conversion to embeddable vocab
 
-for embeddings we want simple symbolic tokens.
-
-sentences_to_embeddables converts the output from corenlp into a series of space seperated embeddable symbols (ie one embedding per distinct token in this set)
+`sentences_to_embeddables` converts the output from corenlp into a series of space seperated embeddable symbols (ie one embedding per distinct token in this set)
+based on some combo of the token/lemma, with/without pos tag, with/without numbers swapped out, possibly with UNK tokens for rare words, etc, etc.
 
 ```
 $ time cat sentences.tagged.tsv \
