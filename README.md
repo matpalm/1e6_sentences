@@ -41,7 +41,9 @@ for embeddings we want simple symbolic tokens.
 sentences_to_embeddables converts the output from corenlp into a series of space seperated embeddable symbols (ie one embedding per distinct token in this set)
 
 ```
-$ time cat sentences.tagged.tsv | ./sentences_to_embeddables.py --emit=lemma --strip-CD --add-pos-tag --keep-top=50000 >sentences.lemma.CD.pos.50K.ssv
+$ time cat sentences.tagged.tsv \
+ | ./sentences_to_embeddables.py --emit=lemma --strip-CD --add-pos-tag --keep-top=50000 \
+ > sentences.lemma.CD.pos.50K.ssv
 ```
 
 ```
